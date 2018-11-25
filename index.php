@@ -1,4 +1,4 @@
-<?  date_default_timezone_set('Asia/Kolkata'); ?>
+<?php  date_default_timezone_set('Asia/Kolkata'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title><?php echo $ip = ($_SERVER['REMOTE_ADDR']); ?></title>
+  <title><?php echo $ip = ($_SERVER['HTTP_HOST']); ?></title>
 
   <!-- Bootstrap -->
   <link href="../index/css/bootstrap.min.css" rel="stylesheet">
@@ -37,23 +37,33 @@
 
           <li class="link setting-btn">
           <a href="">
-          <span class="glyphicon glyphicon-cog" area-hidden="true"></span>
-          <span class="hidden-xs hidden-sm">PHP version:   <?php echo phpversion();?></span>
-
+	          <span class="glyphicon glyphicon-cog" area-hidden="true"></span>
+	          <span class="hidden-xs hidden-sm">PHP version:   <?php echo phpversion();?></span>
             </a>
+          </li>
+          <li>
+          	<a href="http://localhost/phpmyadmin">
+	          <span class="glyphicon glyphicon-cog" area-hidden="true"></span>
+	          <span class="hidden-xs hidden-sm">PHP MyAdmin</span>
+            </a>          	
           </li>
           <li class="link setting-btn">
           <a href="">
-          <span class="glyphicon glyphicon-cog" area-hidden="true"></span>
-          <span class="hidden-xs hidden-sm"><?php echo date("d-m-Y");?></span>
-
+	          <span class="glyphicon glyphicon-cog" area-hidden="true"></span>
+	          <span class="hidden-xs hidden-sm"><?php echo date("d-m-Y");?></span>
             </a>
           </li>
-        </li>
+          <li>
+          	<a href="">
+	          <span class="glyphicon glyphicon-cog" area-hidden="true"></span>
+	          <span class="hidden-xs hidden-sm"><?php echo date("g:i a");?></span>
+            </a>          	
+          </li>
 
         </ul>
-
       </div>
+
+
       <!---manin contain-->
       <div class="col-md-10 col-sm-11 display-table-cell vlaign-top">
         <div class="row">
@@ -173,9 +183,9 @@ foreach($crumbs as $crumb){
 				case "png": $extn="<img src='../index/icon/png.png' width='45%'>"; break;
 				case "jpg": $extn="<img src='../index/icon/jpg.png' width='45%'>"; break;
 				case "jpeg": $extn="<img src='../index/icon/jpg.png' width='45%'>"; break;
-				case "svg": $extn="<img src='../index/icon/svg.png' width='45%'>"; break;
+				case "svg": $extn="<img src='../index/icon/html.png' width='45%'>"; break;
 				case "gif": $extn="<img src='../index/icon/html.png' width='45%'>"; break;
-				case "ico": $extn="<img src='../index/icon/ioc.png' width='45%'>"; break;
+				case "ico": $extn="<img src='../index/icon/ico.png' width='45%'>"; break;
 
 				case "txt": $extn="<img src='../index/icon/txt.png' width='45%'>"; break;
 				case "log": $extn="<img src='../index/icon/log.png' width='45%'>"; break;
@@ -213,22 +223,20 @@ foreach($crumbs as $crumb){
 		}
 
 	// Output
-	 echo("
-
-
-      <div "); if( $index % 6 == 0 ) echo ' class="row"'; echo(">
-       <div class='col-md-2 col-xs-4 dashboard-left-cell'>
+		$subName = substr($name,0,10);
+	  echo("
+       <div class='col-md-2 dashboard-left-cell' align='center'>
                <div class='admin-content-con' align='center'>
                <a href='./$namehref'$favicon class='name'>$extn</a>
                <header>
                    <h5>
-                      <a href='./$namehref'$favicon class='name'>$name</a>
+                      <a href='./$namehref'$favicon class='name'> $subName..</a>
 
                    </h5>
                  </header>
              </div>
             </div>
-        </div>
+
 
 		");
   }
@@ -236,7 +244,16 @@ foreach($crumbs as $crumb){
 	}
 	?>
 
-  </div>
+
+
+
+
+
+
+
+
+
+    </div>
   </div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
